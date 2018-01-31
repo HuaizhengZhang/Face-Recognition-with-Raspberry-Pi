@@ -1,5 +1,5 @@
-import imutils
-from imutils.video import VideoStream
+import cv2
+import numpy as np
 from keras.preprocessing.image import img_to_array
 from keras.models import model_from_json
 import time
@@ -13,12 +13,14 @@ print "Load model successfully"
 
 
 print "Start video stream"
-vs = VideoStream(src=0).start()
-time.sleep(2.0)
+camera = PiCamera()
+camera.resolution = (320,240)
+camera.framerate = 32
+cap = PiRGBArray(camera, size=(320,240))
 
 THD = 0.7
-while True:
-    frame = vs.read()
+for i in camera.capture_continuous(cap, format='bgr', use_video_port=True):
+    frame = i.array
     frame = imutils.resize(frame, width=400)
     image = cv2.resize(frame, (150, 150))
     image = image.astype('float') / 255.0
@@ -42,10 +44,6 @@ while True:
     
     cv2.imshow("Frame", frame)
     key = cv2.waitKey(1) & 0xFF
-    
+    cap.truncate(0)
     if key == ord('q'):
         break
-        
-print "cleaing up"
-cv2.destroyAllWindows()
-vs.stop()
