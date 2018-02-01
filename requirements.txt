@@ -1,0 +1,18 @@
+sudo apt-get update
+
+sudo apt-get install python-pip python-dev
+
+wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/
+            download/v1.1.0/tensorflow-1.1.0-cp27-none-linux_armv7l.whl
+
+sudo pip install tensorflow-1.1.0-cp27-none-linux_armv7l.whl
+
+sudo apt-get install libhdf5-serial-dev -Y
+
+sudo pip install h5py
+
+sudo apt-get install python-scipy
+
+sudo pip install keras
+
+sudo apt-get install python-opencv
