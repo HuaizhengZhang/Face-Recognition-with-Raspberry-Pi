@@ -4,7 +4,7 @@ from keras.preprocessing import image
 from keras.models import load_model
 from keras.applications.mobilenet import MobileNet, preprocess_input, decode_predictions
 import time
-from picamera.arry import PiRGBArray
+from picamera.array import PiRGBArray
 from picamera import PiCamera
 
 model = MobileNet(weights='imagenet')
